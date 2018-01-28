@@ -4,7 +4,6 @@ jdk:
 jobs:
   include:
     - stage: deploy
-	  if: branch = master
       script: echo "test"
 deploy:
  provider: heroku
