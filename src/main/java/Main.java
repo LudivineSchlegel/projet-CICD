@@ -42,33 +42,6 @@ public class Main {
 			  ctx.render("E=mc^2: 12 GeV = " + m.toString());
 			})
 
-
-            .get("db", ctx -> {
-              Blocking.get(() -> {
-                try (Connection connection = ctx.get(DataSource.class).getConnection()) {
-                  Statement stmt = connection.createStatement();
-                  stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-                  stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-                  ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-
-                  ArrayList<String> output = new ArrayList<>();
-                  while (rs.next()) {
-                    output.add("Read from DB: " + rs.getTimestamp("tick"));
-                  }
-                  Map<String, Object> attributes = new HashMap<>();
-                  attributes.put("results", output);
-
-                  return attributes;
-                }
-              }).onError(throwable -> {
-                Map<String, Object> attributes = new HashMap<>();
-                attributes.put("message", "There was an error: " + throwable);
-                ctx.render(groovyTemplate(attributes, "error.html"));
-              }).then(attributes -> {
-                ctx.render(groovyTemplate(attributes, "db.html"));
-              });
-            })
-
             .files(f -> f.dir("public"))
         )
     );

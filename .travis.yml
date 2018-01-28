@@ -5,18 +5,18 @@ jdk:
 install: true
 script: skip
 stages:
-  - compile
+  - install
   - test
   - name: deploy
     if: branch = master
 jobs:
   include:
-    - stage: compile
+    - stage: install
       script: ./gradlew assemble
     - stage: test
       script: ./gradlew check
     - #
-      script: echo "test fini"
+      script: echo "test en parallele"
     - stage: deploy
       script: skip
       deploy: &heroku
