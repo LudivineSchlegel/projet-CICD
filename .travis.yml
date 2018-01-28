@@ -2,6 +2,8 @@ language: java
 jdk:
  - oraclejdk8
  
+install: true
+script: skip
 stages:
   - compile
   - test
@@ -9,10 +11,12 @@ stages:
     if: branch = master
 jobs:
   include:
+    - stage: compile
+      script: ./gradlew assemble
     - stage: test
-      script: echo "test 1"
+      script: ./gradlew check
     - #
-      script: echo "test 2"
+      script: echo "test fini"
     - stage: deploy
       script: skip
       deploy: &heroku
