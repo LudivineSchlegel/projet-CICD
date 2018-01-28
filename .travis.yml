@@ -3,8 +3,12 @@ jdk:
  - oraclejdk8
 jobs:
   include:
+    - stage: test
+      script: echo "test 1"
+    - # stage name not required, will continue to use `test`
+      script: echo "test 2"
     - stage: deploy
-      script: echo "test"
+      script: echo "deploy"
 deploy:
  provider: heroku
  deploy:
