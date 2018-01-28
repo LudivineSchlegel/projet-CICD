@@ -1,6 +1,12 @@
 language: java
 jdk:
  - oraclejdk8
+ 
+ stages:
+  - compile
+  - test
+  - name: deploy
+    if: branch = master
 jobs:
   include:
     - stage: test
@@ -8,12 +14,10 @@ jobs:
     - # stage name not required, will continue to use `test`
       script: echo "test 2"
     - stage: deploy
-      script: echo "deploy"
-deploy:
- provider: heroku
- deploy:
- provider: heroku
- api-key: 
-  secure: $HEROKU_API_KEY
- app: limitless-ravine-55613
+      script: skip
+      deploy: &heroku
+       provider: heroku
+       api-key: 
+        secure: $HEROKU_API_KEY
+       app: limitless-ravine-55613
  
