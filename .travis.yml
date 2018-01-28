@@ -1,5 +1,5 @@
 language: java
-install: gradlew assemble
+install: ./gradlew assemble
 deploy:
   provider: heroku
   api_key:
