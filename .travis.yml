@@ -11,6 +11,7 @@ jobs:
   include:
     - stage: test
       script: echo "test 1"
+    - #
       script: echo "test 2"
     - stage: deploy
       script: skip
