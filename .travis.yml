@@ -1,6 +1,7 @@
 language: java
-install: ./gradlew assemble
+jdk:
+- oraclejdk8
 deploy:
-  provider: heroku
-  api_key:
-    secure: gbYlEq7tMtsZU0ulEhZvTTEuW0MWBNixsgmtfr26YbHL0NFmg8Up8dnXj6jP/sFm8F3auMmAZxotn5YZ2cc2MEkNID3l9PeEzgX6/QjVrfIV6smBtygQn+X0LR4qxevCjymRNBcjnL29C0eOK9M3N3xIVNQNjoYyW4IrjJoiSvcLVKGMZdHskkvmncZ4MbFYSdNzQbmdgsq9hMxbn/Yfc2xfJt7p0SrdgDEvflh9vBdUD5uKNED+1v3g+OsFF8xcAijXJf+zKQ+cWul+ilcarlN3ePTzOtkfQr4j9y9eDcHDqgCRCe3NtnKraKyGVUxopS7CtqDhnz4dTZmXzrTIl9rw2Ivlaqh1ysS0hwW0bYqQdWH+qOgnkwoTer015staeT5E6D92WfD8aeH7v3UdH1B8F73tBiaNw0xJ3DAsbicwVYNer8JPUWC0V4/DzFqfYb8BxtOPsD92OxBd/5WslRrbk0Di3vSeaO2wtBEX+/eEySRhYRXo4jrhvp2kah3qfxd1P0gr7UvsPk+AaVvrOK6bvQe8fPE8nMkVF/CZ7YsvcmdjqqvCzaoY+zthCsgh/jTH17IC9YOzaXFM86TKBV1YhaorJajOF4Xh27a+x8HjfQG365Q4eL8uAYEYTXwDlaXsZ8mOZ9vFu9PyefM2Xv7il4Z3VIokHyk7qv9XUyE=
+ provider: heroku
+ api-key: 
+  secure: $HEROKU_API_KEY
