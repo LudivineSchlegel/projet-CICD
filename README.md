@@ -8,6 +8,10 @@ https://devcenter.heroku.com/articles/getting-started-with-gradle-on-heroku
 
 Dépôt original: https://github.com/heroku/gradle-getting-started
 
+Application générée : https://limitless-ravine-55613.herokuapp.com/
+
+dashbord : https://dashboard.heroku.com/apps/limitless-ravine-55613
+
 Intégration continue avec <a href="https://travis-ci.org/">Travis CI</a>
 
 Lien : https://travis-ci.org/LudivineSchlegel/projet-CICD
