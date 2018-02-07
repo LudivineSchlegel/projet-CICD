@@ -1,38 +1,75 @@
-# gradle-getting-started
+# Projet intégration continue
 
-A barebones Gradle app, which can easily be deployed to Heroku.
+<h2>Bases</h2>
 
-This application support the [Getting Started with Gradle on Heroku](https://devcenter.heroku.com/articles/getting-started-with-gradle-on-heroku) article - check it out.
+Projet se basant sur la documentation de déploiement d'une application web en Java avec HEROKU:
 
-## Running Locally
+https://devcenter.heroku.com/articles/getting-started-with-gradle-on-heroku
 
-Make sure you have Java installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
+Dépôt original: https://github.com/heroku/gradle-getting-started
 
-```sh
-$ git clone https://github.com/heroku/gradle-getting-started.git
-$ cd gradle-getting-started
-$ ./gradlew stage
-$ heroku local web
+Intégration continue avec <a href="https://travis-ci.org/">Travis CI</a>
+
+Lien : https://travis-ci.org/LudivineSchlegel/projet-CICD
+
+<h2>Intégration continue</h2>
+
+Intégration continue du dépôt github vers le gitHeroku puis création de l'application.
+Création d'un fichier <a href="https://github.com/LudivineSchlegel/projet-CICD/blob/master/.travis.yml">.travis.yml</a>
+
+3 étapes de déploiements organisées de la façon suivante :
+
 ```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-If you're going to use a database, ensure you have a local `.env` file that reads something like this:
-
+stages:
+  - install
+  - test
+  - name: deploy
+    if: branch = master
 ```
-DATABASE_URL=postgres://localhost:5432/gradle_database_name
+  - install
+  
+Compilation de l'application.
+
+Commande : 
+
+```script: ./gradlew assemble```
+
+  - test
+  
+Test du bon fonctionnement de l'application.
+
+Commande :
+
+```script: ./gradlew check```
+
+Et en parallèle test de fonctionnement scripte:
+
+Commande :
+
+```script: echo "test en parallele"```
+
+  - deploy
+  
+Déploiement sur HEROKU si sur branche master.
+
+Commande  :
+
+ ``` 
+    script: skip
+    deploy: &heroku
+       provider: heroku
+       api-key: 
+        secure: $HEROKU_API_KEY
+       app: limitless-ravine-55613
 ```
+avec $HEROKU_API_KEY une variable d'environnement définie dans Travis CI
 
-## Deploying to Heroku
+<img src="Capture du 2018-02-05 10-36-46.png" alt="logo git"/>
 
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
+<h2>Problèmes rencontrés</h2>
 
-## Documentation
+Principalement la prise en main de TRAVIS Ci : 
 
-For more information about using Java on Heroku, see these Dev Center articles:
-
-- [Java on Heroku](https://devcenter.heroku.com/categories/java)
+* documentation faible, peu d’exemples
+* partie "stage" et "job" très peu détailler et expliquer (éléments en version béta)
+* documentation pour trouver comment faire une clef sécurisée sous HEROKU et l'intégrer dans Travis CI difficile à trouver. Donc déploiement de Travis CI vers HEROKU difficile à mettre en place.
