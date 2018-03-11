@@ -16,6 +16,8 @@ import java.sql.*;
 
 import javax.sql.DataSource;
 
+// A comment here
+
 public class Main {
   public static void main(String... args) throws Exception {
     RatpackServer.start(s -> s
