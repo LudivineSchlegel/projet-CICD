@@ -10,6 +10,7 @@ public class MainTest {
 
   @Test
   public void exampleTest() {
+    assertTrue(false);
     assertEquals("ratpack", "ratpack");
   }
 }
